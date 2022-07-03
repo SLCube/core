@@ -1,6 +1,8 @@
 package hello.core.member;
 
+import hello.core.AppConfig;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
@@ -12,7 +14,13 @@ class MemberServiceTest {
     // 1) 자동으로 테스트를 돌리기 좋다
     // 2) 눈으로 확인하지 않고 성공 or 실패로 확인 할 수 있다.
 
-    MemberService memberService = new MemberServiceImpl();
+    MemberService memberService;
+
+    @BeforeEach
+    public void beforeEach() {
+        AppConfig appConfig = new AppConfig();
+        memberService = appConfig.memberService();
+    }
 
     @Test
     void join() {
